@@ -8,4 +8,4 @@ class Book(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updateed_at = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(
-        to=Author, on_delete=models.PROTECT, blank=False)
+        to=Author, on_delete=models.CASCADE, blank=False)

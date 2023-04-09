@@ -5,15 +5,14 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-    initial = True
-
     dependencies = [
-        ("authors", "0001_initial"),
+        ("books", "0001_initial"),
+        ("stores", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name="Book",
+            name="BookStore",
             fields=[
                 (
                     "id",
@@ -24,13 +23,17 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("name", models.TextField()),
-                ("created_at", models.DateTimeField(auto_now_add=True)),
-                ("updateed_at", models.DateTimeField(auto_now=True)),
+                ("amount", models.PositiveIntegerField()),
                 (
-                    "author",
+                    "book",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="authors.author"
+                        on_delete=django.db.models.deletion.CASCADE, to="books.book"
+                    ),
+                ),
+                (
+                    "store",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="stores.store"
                     ),
                 ),
             ],
