@@ -1,6 +1,7 @@
 from django.db import models
 
 from books.models import Book
+from django.db.models import UniqueConstraint
 
 
 class Store(models.Model):
@@ -19,3 +20,8 @@ class BookStore(models.Model):
         to=Store, on_delete=models.CASCADE, related_name="book_amounts"
     )
     amount = models.PositiveIntegerField()
+
+    class Meta:
+        constraints = [
+            UniqueConstraint("book", "store", name="uniq_book_store"),
+        ]
